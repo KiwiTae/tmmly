@@ -1,0 +1,198 @@
+﻿<Window x:Class="mly_tm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mly_tm"
+        mc:Ignorable="d"
+        Title="MLY TM" Height="1080" Width="1820">
+    <Grid x:Name="main_grid" Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!---Speed Grid-->
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="speed_label" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="SPEED TARGET" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="1"  Grid.RowSpan="1" Grid.Column="0" />
+            <Label x:Name="speed_label_value" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="8.1 km/h" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="Stretch" Grid.ColumnSpan="1"/>
+
+            <RepeatButton x:Name="speed_button_plus" Content="+" Click="speed_increase" TouchUp="OnUpdateSpeed" PreviewMouseUp="OnUpdateSpeed" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
+            <RepeatButton x:Name="speed_button_minus" Content="-" Click="speed_decrease" TouchUp="OnUpdateSpeed" PreviewMouseUp="OnUpdateSpeed" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
+        </Grid>
+        <!--End Speed -->
+
+        <!---Incline Grid-->
+        <Grid Grid.Row="0" Grid.Column="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="incline_label" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="INCLINE TARGET" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="1"  Grid.RowSpan="1" Grid.Column="0" />
+            <Label x:Name="incline_label_value" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="0 deg" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="Stretch" Grid.ColumnSpan="1"/>
+
+            <RepeatButton x:Name="incline_button_plus" Content="+" Click="incline_increase" TouchUp="OnUpdateIncline" PreviewMouseUp="OnUpdateIncline" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
+            <RepeatButton x:Name="incline_button_minus" Content="-" Click="incline_decrease" TouchUp="OnUpdateIncline" PreviewMouseUp="OnUpdateIncline" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
+        </Grid>
+        <!--End Incline -->
+
+
+        <!-- sliders panel Grid-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Heartbeat limit-->
+            <Grid Grid.Row="0" Grid.Column="0" Name="HEARTBEAT_GRID">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="heartbeat_label" Content="MAX HEARTBEAT" Grid.Row="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Slider x:Name="heartbeat_slider" ValueChanged="OnMaxHeartbeatTargetChanged" TouchUp="OnUpdateHeartbeat" PreviewMouseUp="OnUpdateHeartbeat" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="max_heartbeat_label_value" Content="0 bpm" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+
+            <!--Pressure dmi-->
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="pressure_label" Content="PRESSURE TARGET" Grid.Row="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Slider x:Name="pressure_slider" ValueChanged="OnPressureTargetChanged" TouchUp="OnUpdatePressure" PreviewMouseUp="OnUpdatePressure"  Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="pressure_label_value" Content="110 dpi" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <!-- slider panel -->
+
+
+        <!--Start button -->
+        <Button x:Name="onoff_button" Grid.ColumnSpan="2" Margin="5" Content="START" Click="ONOFF" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch"/>
+
+        <!--LABEL DURATION -->
+        <Grid Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tm_state_text" Text="THING" IsReadOnly="True" TextAlignment="Left" AcceptsReturn="True" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="tm_state_text2" Text="THING" IsReadOnly="True" TextAlignment="Left" AcceptsReturn="True" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+
+            </Grid>
+
+            <TextBox x:Name="debugLog_text" Text="RAS" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+
+        <CheckBox x:Name="cardioMode_checkBox" Content="cardio mode" Unchecked="cardioMode_checkBox_Checked" Checked="cardioMode_checkBox_Checked" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tm_loggedUser" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10"/>
+        
+        </Grid>
+
+        <TextBox x:Name="console_text" TextChanged="console_text_TextChanged" Grid.Row="1" Grid.Column="3"/>
+
+
+        <Grid x:Name="user_grid" Background="AliceBlue" Visibility="Visible" Grid.RowSpan="10" Grid.ColumnSpan="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1"  Content="USER DATA" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="tm_user" Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="AGE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="WEIGTH (kg)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="SEX" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="date_label" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+            <Grid Grid.Row="3" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <RadioButton Content="Female" GroupName="Sex" Checked="sex_Checked" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <RadioButton Content="Male" GroupName="Sex" Checked="sex_Checked" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="tm_user_age_comboBox" SelectionChanged="tm_user_age_comboBox_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="tm_user_weight_comboBox" SelectionChanged="tm_user_weight_comboBox_SelectionChanged" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+            <Button x:Name="tm_user_pass_button" Content="PASS" Click="tm_user_pass_button_Click" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" Margin="10" />
+            <Button x:Name="tm_user_validate_button" Content="VALIDATE" Click="tm_user_validate_button_Click" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Margin="10" />
+            <TextBox x:Name="console_user_text" TextChanged="console_text_TextChanged" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3"/>
+
+        </Grid>
+    </Grid>
+
+</Window>

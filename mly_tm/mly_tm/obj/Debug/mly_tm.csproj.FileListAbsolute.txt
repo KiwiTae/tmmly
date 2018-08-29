@@ -1,0 +1,14 @@
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\bin\Debug\mly_tm.exe.config
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\bin\Debug\mly_tm.exe
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\bin\Debug\mly_tm.pdb
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.csprojResolveAssemblyReference.cache
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\MainWindow.g.cs
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\App.g.cs
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm_MarkupCompile.cache
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm_MarkupCompile.lref
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\MainWindow.baml
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.g.resources
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.Properties.Resources.resources
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.csproj.GenerateResource.Cache
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.exe
+C:\Users\alefebvr\Documents\Work\WorkFreelance\MLY_TM_201808\demo\mly_tm\mly_tm\obj\Debug\mly_tm.pdb
