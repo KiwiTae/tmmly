@@ -32,8 +32,8 @@
             <Label x:Name="speed_label" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="SPEED TARGET" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="1"  Grid.RowSpan="1" Grid.Column="0" />
             <Label x:Name="speed_label_value" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="8.1 km/h" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="Stretch" Grid.ColumnSpan="1"/>
 
-            <RepeatButton x:Name="speed_button_plus" Content="+" Click="speed_increase" TouchUp="OnUpdateSpeed" PreviewMouseUp="OnUpdateSpeed" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
-            <RepeatButton x:Name="speed_button_minus" Content="-" Click="speed_decrease" TouchUp="OnUpdateSpeed" PreviewMouseUp="OnUpdateSpeed" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
+            <RepeatButton x:Name="speed_button_plus" Content="+" Click="speed_increase" PreviewMouseUp="OnUpdateSpeed" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
+            <RepeatButton x:Name="speed_button_minus" Content="-" Click="speed_decrease" PreviewMouseUp="OnUpdateSpeed" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Delay="50" Interval="50"/>
         </Grid>
         <!--End Speed -->
 
@@ -50,8 +50,8 @@
             <Label x:Name="incline_label" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="INCLINE TARGET" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="1"  Grid.RowSpan="1" Grid.Column="0" />
             <Label x:Name="incline_label_value" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center" Content="0 deg" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="Stretch" Grid.ColumnSpan="1"/>
 
-            <RepeatButton x:Name="incline_button_plus" Content="+" Click="incline_increase" TouchUp="OnUpdateIncline" PreviewMouseUp="OnUpdateIncline" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
-            <RepeatButton x:Name="incline_button_minus" Content="-" Click="incline_decrease" TouchUp="OnUpdateIncline" PreviewMouseUp="OnUpdateIncline" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
+            <RepeatButton x:Name="incline_button_plus" Content="+" Click="incline_increase" PreviewMouseUp="OnUpdateIncline" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
+            <RepeatButton x:Name="incline_button_minus" Content="-" Click="incline_decrease" PreviewMouseUp="OnUpdateIncline" Grid.Column="0" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Delay="500" Interval="100"/>
         </Grid>
         <!--End Incline -->
 
@@ -77,7 +77,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="heartbeat_label" Content="MAX HEARTBEAT" Grid.Row="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
-                <Slider x:Name="heartbeat_slider" ValueChanged="OnMaxHeartbeatTargetChanged" TouchUp="OnUpdateHeartbeat" PreviewMouseUp="OnUpdateHeartbeat" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Slider x:Name="heartbeat_slider" ValueChanged="OnMaxHeartbeatTargetChanged" PreviewMouseUp="OnUpdateHeartbeat" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
                 <Label x:Name="max_heartbeat_label_value" Content="0 bpm" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
             </Grid>
 
@@ -92,7 +92,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="pressure_label" Content="PRESSURE TARGET" Grid.Row="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
-                <Slider x:Name="pressure_slider" ValueChanged="OnPressureTargetChanged" TouchUp="OnUpdatePressure" PreviewMouseUp="OnUpdatePressure"  Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
+                <Slider x:Name="pressure_slider" ValueChanged="OnPressureTargetChanged" PreviewMouseUp="OnUpdatePressure"  Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
                 <Label x:Name="pressure_label_value" Content="110 dpi" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
             </Grid>
         </Grid>
@@ -122,18 +122,29 @@
             <TextBox x:Name="debugLog_text" Text="RAS" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalContentAlignment ="Center" HorizontalContentAlignment="Center"/>
         </Grid>
 
-        <CheckBox x:Name="cardioMode_checkBox" Content="cardio mode" Unchecked="cardioMode_checkBox_Checked" Checked="cardioMode_checkBox_Checked" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="cardioModeWarning_Label" Content="WARNING: HEARTBEAT IS TOO HIGH" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"/>
+        </Grid>
+        
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="cardioMode_checkBox" Content="cardio mode" Unchecked="cardioMode_checkBox_Checked" Checked="cardioMode_checkBox_Checked" Grid.Column="0" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
+        </Grid>
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="tm_loggedUser" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10"/>
-        
         </Grid>
 
         <TextBox x:Name="console_text" TextChanged="console_text_TextChanged" Grid.Row="1" Grid.Column="3"/>
-
 
         <Grid x:Name="user_grid" Background="AliceBlue" Visibility="Visible" Grid.RowSpan="10" Grid.ColumnSpan="10">
             <Grid.ColumnDefinitions>
@@ -193,6 +204,7 @@
             <TextBox x:Name="console_user_text" TextChanged="console_text_TextChanged" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3"/>
 
         </Grid>
+
     </Grid>
 
 </Window>

@@ -146,45 +146,32 @@ namespace mly_tm
         private void cardioMode_checkBox_Checked(object sender, RoutedEventArgs e)
         {
             bool b = (sender as CheckBox).IsChecked.Value;
-            HEARTBEAT_GRID.Visibility = b ? Visibility.Visible : Visibility.Hidden; 
+            HEARTBEAT_GRID.Visibility = b ? Visibility.Visible : Visibility.Hidden;
+
+            if (!b) { cardioModeWarning_Label.Visibility = Visibility.Hidden; }
+
             tm_app.ToggleCardioMode(b);
         }
 
 
         // Commands events
         //Incline
-        private void OnUpdateIncline(object sender, TouchEventArgs e)
-        {
-            tm_app.sendCommand(ECOMMAND_TYPE.CR);
-        }
         private void OnUpdateIncline(object sender, MouseButtonEventArgs e)
         {
             tm_app.sendCommand(ECOMMAND_TYPE.CR);
         }
         //Speed
-        private void OnUpdateSpeed(object sender, TouchEventArgs e)
-        {
-            tm_app.sendCommand(ECOMMAND_TYPE.CS);
-        }
         private void OnUpdateSpeed(object sender, MouseButtonEventArgs e)
         {
             tm_app.sendCommand(ECOMMAND_TYPE.CS);
         }
         //Pressure
-        private void OnUpdatePressure(object sender, TouchEventArgs e)
-        {
-            tm_app.sendCommand(ECOMMAND_TYPE.CM);
-        }
         private void OnUpdatePressure(object sender, MouseButtonEventArgs e)
         {
             tm_app.sendCommand(ECOMMAND_TYPE.CM);
         }
 
         //Heartbeat 
-        private void OnUpdateHeartbeat(object sender, TouchEventArgs e)
-        {
-            tm_app.sendCommand(ECOMMAND_TYPE.CM);
-        }
         private void OnUpdateHeartbeat(object sender, MouseButtonEventArgs e)
         {
             tm_app.sendCommand(ECOMMAND_TYPE.CT);

@@ -107,6 +107,9 @@ namespace mly_tm
         // WS
         WS wS = new WS();
 
+        DispatcherTimer cardioMode_clock;
+        protected int outOfBreathCount;
+
         DispatcherTimer disconnection_clock;
         protected List<W7> w7s = new List<W7>();
         protected List<WS> wSs = new List<WS>();
@@ -144,7 +147,7 @@ namespace mly_tm
                 // is data waiting in the port's buffer
                 port.DataReceived += new SerialDataReceivedEventHandler(receiveCommand);
             }
-            TryConnect();
+            SetupCLocks();
         }
 
         public void Reset()
@@ -167,13 +170,18 @@ namespace mly_tm
             console_msg = "TM "+ tm_state;
         }
 
-        private void TryConnect()
+        private void SetupCLocks()
         {
             disconnection_clock = new DispatcherTimer();
             disconnection_clock.Tick += new EventHandler(Handle_TryConnect);
             disconnection_clock.Interval = new TimeSpan(0, 0, 1);
             disconnection_clock.Start();
             disconnection_start = DateTime.Now;
+
+            cardioMode_clock = new DispatcherTimer();
+            cardioMode_clock.Tick += new EventHandler(Handle_CardioMode);
+            cardioMode_clock.Interval = new TimeSpan(0, 0, 20);
+            cardioMode_clock.Start();
         }
 
         private void Handle_TryConnect(object source, EventArgs e)
@@ -191,6 +199,26 @@ namespace mly_tm
             }else
             {
                 disconnection_clock.Stop();
+            }
+        }
+
+        private void Handle_CardioMode(object source, EventArgs e)
+        {
+            if (bIs_cardio_mode && is_running)
+            {
+                if (w7.heartbeat > heartbeat_limit)
+                {
+                    // Slow down
+                    changeSpeedTarget(-0.2 * speed_target);
+                    changeInclineTarget(outOfBreathCount > 0 ? -incline_target : (int)(-0.5 * incline_target));
+                    outOfBreathCount++;
+                    windowParent.cardioModeWarning_Label.Visibility = System.Windows.Visibility.Visible;
+                }
+                else
+                {
+                    outOfBreathCount = 0;
+                    windowParent.cardioModeWarning_Label.Visibility = System.Windows.Visibility.Hidden;
+                }
             }
         }
 
